@@ -66,29 +66,33 @@ function UserCard({ userId }: UserCardProps) {
     return null
   }
   return (
-     <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-xl font-semibold text-gray-900">{user.name}</h2>
-          <p className="mt-1 text-sm text-gray-500">{user.email}</p>
-        </div>
+    <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+  {/* Added text-center and mb-4 */}
+  <h1 className="text-center text-lg font-semibold text-gray-700 mb-4">User badge </h1>
 
-        {/* Role badge */}
-        <span className={`rounded-full px-3 py-1 text-xs font-medium ${roleBadgeClasses[user.role]}`}>
-          {user.role}
-        </span>
-      </div>
-
-      <div className="mt-4 flex gap-3">
-        <Button label="Edit User" onClick={() => console.log('Edit', user.id)} />
-        <Button
-          label="Remove"
-          variant="danger"
-          size="sm"
-          onClick={() => console.log('Remove', user.id)}
-        />
-      </div>
+  <div className="flex items-center justify-between">
+    <div>
+      <h3 className="font-semibold text-gray-900">{user.name}</h3>
+      <p className="mt-1 text-sm text-gray-500">{user.email}</p>
     </div>
+
+    {/* Role badge */}
+    <span className={`rounded-full px-3 py-1 text-xs font-medium ${roleBadgeClasses[user.role]}`}>
+      {user.role}
+    </span>
+  </div>
+
+  <div className="mt-4 flex gap-3">
+    <Button label="Edit User" onClick={() => console.log('Edit', user.id)} />
+    <Button
+      label="Remove"
+      variant="danger"
+      size="sm"
+      onClick={() => console.log('Remove', user.id)}
+    />
+  </div>
+</div>
+
   )
 }
 
