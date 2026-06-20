@@ -1,73 +1,42 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+src/
+│
+├── app/                        # Redux store setup lives here
+│   ├── store.ts                # The Redux store
+│   └── hooks.ts                # Typed useDispatch / useSelector
+│
+├── features/                   # Feature-based modules (core of Redux Toolkit)
+│   └── counter/                # One folder per feature
+│       ├── counterSlice.ts     # Slice (actions + reducers)
+│       ├── Counter.tsx         # Component that uses this feature
+│       └── counterTypes.ts     # Types for this feature
+│
+├── components/                 # Shared/reusable UI components
+│   ├── Button/
+│   │   ├── Button.tsx
+│   │   └── Button.types.ts
+│   └── ...
+│
+├── pages/                      # Page-level components (route targets)
+│   ├── HomePage.tsx
+│   └── ...
+│
+├── hooks/                      # Shared custom hooks
+│   └── useDebounce.ts
+│
+├── services/                   # API call functions
+│   └── api.ts
+│
+├── types/                      # Global TypeScript types & interfaces
+│   └── index.ts
+│
+├── utils/                      # Pure helper functions
+│   └── formatDate.ts
+│
+├── constants/                  # App-wide constants
+│   └── routes.ts
+│
+├── assets/                     # Images, fonts, SVGs
+│
+├── App.tsx                     # Root component
+├── main.tsx                    # Entry point
+└── vite-env.d.ts              # Vite type declarations
