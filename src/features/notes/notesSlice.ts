@@ -20,11 +20,13 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 interface NotesState {
   notes: string[]
   maxNotes: number
+  searchTerm: string
 }
 
 const initialState: NotesState = {
   notes: [],
   maxNotes: 5,
+  searchTerm : ""
 }
 
 const notesSlice = createSlice({
@@ -47,6 +49,10 @@ const notesSlice = createSlice({
       // maxNotes resets too in case you ever allow changing it
       state.maxNotes = initialState.maxNotes
     },
+
+    setSearchTerm(state, action:PayloadAction<string>){
+      state.searchTerm = action.payload
+    }
   },
 })
 
